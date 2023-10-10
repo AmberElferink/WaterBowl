@@ -20,7 +20,7 @@ namespace SimplestarGame.Wave
         [SerializeField] Texture2D maskTexture;
         [SerializeField] bool disableAutoResolution = false;
         [SerializeField] string shaderNamePart = "SimpleWater";
-        [SerializeField] Material DebugTextureMaterial;
+        [SerializeField] Material debugMaterial;
 
         /// <summary>
         /// Wave Interactive Function
@@ -243,8 +243,8 @@ namespace SimplestarGame.Wave
                     if(renderer.materials[i].shader.name.Contains(shaderNamePart))
                         material = renderer.materials[i];
 
-                if(null != DebugTextureMaterial)
-                    DebugTextureMaterial.mainTexture = this.nextWaveTexture;
+                if(null != debugMaterial)
+                    debugMaterial.mainTexture = this.nextWaveTexture;
 
                 if (null != material)
                 {

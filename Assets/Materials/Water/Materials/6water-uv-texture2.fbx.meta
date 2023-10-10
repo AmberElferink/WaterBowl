@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 854afd90bfc0b9641a88379740e86749
+guid: ea4e6db68ff14184fb4fbd9f140c90b7
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -13,7 +13,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Water-volume.001
-    second: {fileID: 2100000, guid: 5b9a2868c3d321d4bac1d295ebb2490f, type: 2}
+    second: {fileID: 2100000, guid: 4efef7186cde53949b8ff6f4b9707671, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -56,7 +56,7 @@ ModelImporter:
     importLights: 1
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
-    swapUVChannels: 0
+    swapUVChannels: 1
     generateSecondaryUV: 0
     useFileUnits: 1
     keepQuads: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 854afd90bfc0b9641a88379740e86749
+guid: 28cae5a15b45bc14bae96d7691a3c1d7
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -8,12 +8,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Water-surface.001
-    second: {fileID: 2100000, guid: 93c7d504337677447a6f2b2066d364cd, type: 2}
+    second: {fileID: 2100000, guid: aaa45e3523ef732478be7d895e19c789, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Water-volume.001
-    second: {fileID: 2100000, guid: 5b9a2868c3d321d4bac1d295ebb2490f, type: 2}
+    second: {fileID: 2100000, guid: cb177c54ba4a92646958c2c545903ce4, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

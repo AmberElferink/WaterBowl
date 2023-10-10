@@ -73,10 +73,10 @@ namespace SimplestarGame.Wave
             {
                 return;
             }
-            if (0 < Vector3.Dot(this.velocity, other.transform.up))
-            {
-                return;
-            }
+            //if (0 < Vector3.Dot(this.velocity, other.transform.up))
+            //{
+            //    return;
+            //}
             var normalizedVelocity = this.velocity.normalized;
             if (Physics.Raycast(this.transform.position - this.velocity * 0.5f, normalizedVelocity, out RaycastHit hit, Vector3.Distance(Vector3.zero, this.velocity),  (1 << this.waterLayer))){
                 switch (this.waveType)
@@ -84,6 +84,7 @@ namespace SimplestarGame.Wave
                     case WaveType.Point:
                         {
                             waveComputer.AddWavePoint(hit.point, this.radius, this.velocity);
+                            Debug.DrawLine(hit.point, hit.point + this.velocity * 1000);
                         }
                         break;
                     case WaveType.Line:
