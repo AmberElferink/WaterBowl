@@ -33,13 +33,13 @@ void AddWave(uint3 dispatchThreadId : SV_DispatchThreadID)
         float dy1 = point1.y - pos.y;
         float r = sqrt(dx1 * dx1 + dy1 * dy1);
         float d = r - rad;
-        if(0 > d)
+        if (0 > d)
         {
             float next = clamp(_CurrWaveTexture[dispatchThreadId.xy].x + point1.w * clamp(2 * d / rad, -1, 0), -2048 * maxHeight, 2048 * maxHeight);
             _CurrWaveTexture[dispatchThreadId.xy] = float4(next, _CurrWaveTexture[dispatchThreadId.xy].y, 0, 0);
         }
     }
-    for (int idx2 = 0; idx2 < _AddWaveLinesCount; idx2+=2)
+    for (int idx2 = 0; idx2 < _AddWaveLinesCount; idx2 += 2)
     {
         float4 point1 = _AddWaveLines[idx2];
         float4 point2 = _AddWaveLines[idx2 + 1];
@@ -49,25 +49,25 @@ void AddWave(uint3 dispatchThreadId : SV_DispatchThreadID)
         float tt = -(abcd.x * (point1.x - pos.x) + abcd.y * (point1.y - pos.y));
         float a2b2 = abcd.x * abcd.x + abcd.y * abcd.y;
         float r = 0;
-        if (0 >= tt) 
+        if (0 >= tt)
         {
             float dx1 = point1.x - pos.x;
             float dy1 = point1.y - pos.y;
             r = sqrt(dx1 * dx1 + dy1 * dy1);
         }
-        else if(a2b2 <= tt) 
+        else if (a2b2 <= tt)
         {
             float dx2 = point2.x - pos.x;
             float dy2 = point2.y - pos.y;
             r = sqrt(dx2 * dx2 + dy2 * dy2);
         }
-        else 
+        else
         {
             float f = (abcd.x * (point1.y - pos.y) - abcd.y * (point1.x - pos.x));
             r = sqrt(f * f / a2b2);
         }
         float d = r - rad;
-        if(0 > d)
+        if (0 > d)
         {
             float next = clamp(_CurrWaveTexture[dispatchThreadId.xy].x + point1.w * clamp(2 * d / rad, -1, 0), -2048 * maxHeight, 2048 * maxHeight);
             _CurrWaveTexture[dispatchThreadId.xy] = float4(next, _CurrWaveTexture[dispatchThreadId.xy].y, 0, 0);
@@ -85,7 +85,7 @@ void Update(uint3 dispatchThreadId : SV_DispatchThreadID)
     float4 current = _CurrWaveTexture[dispatchThreadId.xy];
     float4 next = current;
 
-    if(0 != current.y) {
+    if (0 != current.y) {
         _NextWaveTexture[dispatchThreadId.xy] = current;
         return;
     }
@@ -94,7 +94,7 @@ void Update(uint3 dispatchThreadId : SV_DispatchThreadID)
     uint2 sample_X = uint2(uint(width - 1), dispatchThreadId.y);
     uint2 sampleZ = uint2(dispatchThreadId.x, 0);
     uint2 sample_Z = uint2(dispatchThreadId.x, uint(height - 1));
-    
+
 
     float maskX = dispatchThreadId.x == uint(width - 1) ? 0 : _CurrWaveTexture[dispatchThreadId.xy + uint2(1, 0)].y;
     float mask_X = dispatchThreadId.x == 0 ? 0 : _CurrWaveTexture[dispatchThreadId.xy + uint2(-1, 0)].y;
@@ -110,20 +110,20 @@ void Update(uint3 dispatchThreadId : SV_DispatchThreadID)
     next.x = 2.0 * current.x - last.x
         + (_WaveSpeed * _WaveSpeed * _WaveCoef * _WaveCoef) / (_DeltaSize * _DeltaSize)
         * (
-            + current_X
+            +current_X
             + currentX
             + current_Z
             + currentZ
-            - 4.0 * current.x 
-        )
+            - 4.0 * current.x
+            )
         // _DampingForce force
         - _DampingForce * _WaveSpeed * (current.x - last.x)
         // Restoring force
-        -0.0001 * _WaveSpeed * (current.x)
+        - 0.0001 * _WaveSpeed * (current.x)
         ;
     float maxHeight = 1.0 / width;
     next.x = clamp(next.x, -2048 * maxHeight, 2048 * maxHeight);
-    _NextWaveTexture[dispatchThreadId.xy] = next *10; // *10 to create debug visuals for wave
+    _NextWaveTexture[dispatchThreadId.xy] = next;
     _WaveHeightResult[dispatchThreadId.y * width + dispatchThreadId.x] = -next.x;
 }
 
