@@ -14,9 +14,9 @@ namespace SimplestarGame.Wave
     public class WaveSimulator : MonoBehaviour
     {
         [SerializeField] ComputeShader computeShaderResource;
-        [SerializeField][Range(0.01f, 0.07f)] internal float waveSpeed = 0.056f;
-        [SerializeField][Range(0.1f, 10.0f)] internal float wavePower = 3f;
-        [SerializeField][Range(0.0001f, 0.9f)] internal float dampingForce = 0.01f;
+        [SerializeField] [Range(0.01f, 0.07f)] internal float waveSpeed = 0.056f;
+        [SerializeField] [Range(0.1f, 10.0f)] internal float wavePower = 3f;
+        [SerializeField] [Range(0.0001f, 0.9f)] internal float dampingForce = 0.01f;
         [SerializeField] Texture2D maskTexture;
         [SerializeField] bool disableAutoResolution = false;
         [SerializeField] string shaderNamePart = "SimpleWater";
@@ -163,7 +163,7 @@ namespace SimplestarGame.Wave
                     nextResolution = 11;
                 }
             }
-            if(this.resolution == nextResolution)
+            if (this.resolution == nextResolution)
             {
                 // Skip Update
                 return;
@@ -176,7 +176,7 @@ namespace SimplestarGame.Wave
             {
                 this.lastWaveTexture.Release();
             }
-            this.lastWaveTexture = new RenderTexture(this.width, this.width, 0, RenderTextureFormat.ARGBFloat);
+            this.lastWaveTexture = new RenderTexture(this.width, this.width, 0, RenderTextureFormat.RFloat);
             this.lastWaveTexture.wrapMode = TextureWrapMode.Clamp;
             this.lastWaveTexture.enableRandomWrite = true;
             this.lastWaveTexture.Create();
@@ -185,7 +185,7 @@ namespace SimplestarGame.Wave
             {
                 this.currWaveTexture.Release();
             }
-            this.currWaveTexture = new RenderTexture(this.width, this.width, 0, RenderTextureFormat.ARGBFloat);
+            this.currWaveTexture = new RenderTexture(this.width, this.width, 0, RenderTextureFormat.RFloat);
             this.currWaveTexture.wrapMode = TextureWrapMode.Clamp;
             this.currWaveTexture.enableRandomWrite = true;
             this.currWaveTexture.Create();
@@ -194,7 +194,7 @@ namespace SimplestarGame.Wave
             {
                 this.nextWaveTexture.Release();
             }
-            this.nextWaveTexture = new RenderTexture(this.width, this.width, 0, RenderTextureFormat.ARGBFloat);
+            this.nextWaveTexture = new RenderTexture(this.width, this.width, 0, RenderTextureFormat.RFloat);
             this.nextWaveTexture.wrapMode = TextureWrapMode.Clamp;
             this.nextWaveTexture.enableRandomWrite = true;
             this.nextWaveTexture.Create();
@@ -224,7 +224,7 @@ namespace SimplestarGame.Wave
             {
                 this.waveHeightResultBuffer.Release();
             }
-            this.waveHeightResultBuffer = new GraphicsBuffer(GraphicsBuffer.Target.Raw , this.width * this.width, sizeof(float));
+            this.waveHeightResultBuffer = new GraphicsBuffer(GraphicsBuffer.Target.Raw, this.width * this.width, sizeof(float));
             this.computeShader.SetBuffer(this.kernelUpdate, this.WaveHeightResultId, this.waveHeightResultBuffer);
 
             //// Set to AddWave Kernel
@@ -240,10 +240,10 @@ namespace SimplestarGame.Wave
             {
                 Material material = null;
                 for (int i = 0; i < renderer.materials.Length; i++)
-                    if(renderer.materials[i].shader.name.Contains(shaderNamePart))
+                    if (renderer.materials[i].shader.name.Contains(shaderNamePart))
                         material = renderer.materials[i];
 
-                if(null != debugMaterial)
+                if (null != debugMaterial)
                     debugMaterial.mainTexture = this.nextWaveTexture;
 
                 if (null != material)

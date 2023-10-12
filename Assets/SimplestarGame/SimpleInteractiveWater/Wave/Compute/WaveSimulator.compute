@@ -3,9 +3,9 @@
 #pragma kernel Update
 #pragma kernel Replace
 
-RWTexture2D<float4> _LastWaveTexture;
-RWTexture2D<float4> _CurrWaveTexture;
-RWTexture2D<float4> _NextWaveTexture;
+RWTexture2D<float> _LastWaveTexture;
+RWTexture2D<float> _CurrWaveTexture;
+RWTexture2D<float> _NextWaveTexture;
 RWStructuredBuffer<float> _WaveHeightResult;
 
 uniform float _WaveCoef;
@@ -36,7 +36,7 @@ void AddWave(uint3 dispatchThreadId : SV_DispatchThreadID)
         if (0 > d)
         {
             float next = clamp(_CurrWaveTexture[dispatchThreadId.xy].x + point1.w * clamp(2 * d / rad, -1, 0), -2048 * maxHeight, 2048 * maxHeight);
-            _CurrWaveTexture[dispatchThreadId.xy] = float4(next, _CurrWaveTexture[dispatchThreadId.xy].y, 0, 0);
+            _CurrWaveTexture[dispatchThreadId.xy] = next;
         }
     }
     for (int idx2 = 0; idx2 < _AddWaveLinesCount; idx2 += 2)
@@ -70,36 +70,41 @@ void AddWave(uint3 dispatchThreadId : SV_DispatchThreadID)
         if (0 > d)
         {
             float next = clamp(_CurrWaveTexture[dispatchThreadId.xy].x + point1.w * clamp(2 * d / rad, -1, 0), -2048 * maxHeight, 2048 * maxHeight);
-            _CurrWaveTexture[dispatchThreadId.xy] = float4(next, _CurrWaveTexture[dispatchThreadId.xy].y, 0, 0);
+            _CurrWaveTexture[dispatchThreadId.xy] = next;
         }
     }
 }
-
+//
 [numthreads(32, 32, 1)]
 void Update(uint3 dispatchThreadId : SV_DispatchThreadID)
 {
     float width, height;
     _CurrWaveTexture.GetDimensions(width, height);
 
-    float4 last = _LastWaveTexture[dispatchThreadId.xy];
-    float4 current = _CurrWaveTexture[dispatchThreadId.xy];
-    float4 next = current;
+    float last = _LastWaveTexture[dispatchThreadId.xy];
+    float current = _CurrWaveTexture[dispatchThreadId.xy];
+    float next = current;
 
-    if (0 != current.y) {
-        _NextWaveTexture[dispatchThreadId.xy] = current;
-        return;
-    }
+    //if (0 != current.y) {
+    //    _NextWaveTexture[dispatchThreadId.xy] = current;
+    //    return;
+    //}
 
-    uint2 sampleX = uint2(0, dispatchThreadId.y);
-    uint2 sample_X = uint2(uint(width - 1), dispatchThreadId.y);
-    uint2 sampleZ = uint2(dispatchThreadId.x, 0);
-    uint2 sample_Z = uint2(dispatchThreadId.x, uint(height - 1));
+    //uint2 sampleX = uint2(0, dispatchThreadId.y);
+    //uint2 sample_X = uint2(uint(width - 1), dispatchThreadId.y);
+    //uint2 sampleZ = uint2(dispatchThreadId.x, 0);
+    //uint2 sample_Z = uint2(dispatchThreadId.x, uint(height - 1));
 
 
-    float maskX = dispatchThreadId.x == uint(width - 1) ? 0 : _CurrWaveTexture[dispatchThreadId.xy + uint2(1, 0)].y;
-    float mask_X = dispatchThreadId.x == 0 ? 0 : _CurrWaveTexture[dispatchThreadId.xy + uint2(-1, 0)].y;
-    float maskZ = dispatchThreadId.y == uint(height - 1) ? 0 : _CurrWaveTexture[dispatchThreadId.xy + uint2(0, 1)].y;
-    float mask_Z = dispatchThreadId.y == 0 ? 0 : _CurrWaveTexture[dispatchThreadId.xy + uint2(0, -1)].y;
+    //float maskX = dispatchThreadId.x == uint(width - 1) ? 0 : _CurrWaveTexture[dispatchThreadId.xy + uint2(1, 0)].y;
+    //float mask_X = dispatchThreadId.x == 0 ? 0 : _CurrWaveTexture[dispatchThreadId.xy + uint2(-1, 0)].y;
+    //float maskZ = dispatchThreadId.y == uint(height - 1) ? 0 : _CurrWaveTexture[dispatchThreadId.xy + uint2(0, 1)].y;
+    //float mask_Z = dispatchThreadId.y == 0 ? 0 : _CurrWaveTexture[dispatchThreadId.xy + uint2(0, -1)].y;
+
+    float maskX = 0;
+    float mask_X = 0;
+    float maskZ = 0;
+    float mask_Z = 0;
 
     float currentX = maskX == 0 ? (dispatchThreadId.x == uint(width - 1) ? last.x : _CurrWaveTexture[dispatchThreadId.xy + uint2(1, 0)].x) : current.x;
     float current_X = mask_X == 0 ? (dispatchThreadId.x == 0 ? last.x : _CurrWaveTexture[dispatchThreadId.xy + uint2(-1, 0)].x) : current.x;
@@ -123,15 +128,15 @@ void Update(uint3 dispatchThreadId : SV_DispatchThreadID)
         ;
     float maxHeight = 1.0 / width;
     next.x = clamp(next.x, -2048 * maxHeight, 2048 * maxHeight);
-    _NextWaveTexture[dispatchThreadId.xy] = next;
+    _NextWaveTexture[dispatchThreadId.xy] = next; // *10 to create debug visuals for wave
     _WaveHeightResult[dispatchThreadId.y * width + dispatchThreadId.x] = -next.x;
 }
-
+//
 [numthreads(32, 32, 1)]
 void Replace(uint3 dispatchThreadId : SV_DispatchThreadID)
 {
-    float4 current = _CurrWaveTexture[dispatchThreadId.xy];
-    float4 next = _NextWaveTexture[dispatchThreadId.xy];
+    float current = _CurrWaveTexture[dispatchThreadId.xy];
+    float next = _NextWaveTexture[dispatchThreadId.xy];
 
     _LastWaveTexture[dispatchThreadId.xy] = current;
     _CurrWaveTexture[dispatchThreadId.xy] = next;
