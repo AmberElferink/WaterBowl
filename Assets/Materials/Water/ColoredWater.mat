@@ -83,8 +83,8 @@ Material:
     - _BUILTIN_ZWriteControl: 0
     - _BumpScale: 1
     - _CircleClampMax: 1.34
-    - _CircleClampMin: 0.774
-    - _CircleCutoffDistance: 1
+    - _CircleClampMin: 0.115
+    - _CircleCutoffDistance: 0.764
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 10
@@ -112,7 +112,7 @@ Material:
     - _UseColor: 0.5
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 0.11792451, g: 0.87641364, b: 1, a: 0.8235294}
+    - _Color: {r: 0, g: 0.8521046, b: 0.8773585, a: 0.49019608}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &8405298602002582143

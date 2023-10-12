@@ -428,6 +428,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -116.407}
+--- !u!1 &259715463 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5142989838558140354, guid: 4992889e78a56554190bc7d4f10971c9, type: 3}
+  m_PrefabInstance: {fileID: 1526085686}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &259715472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259715463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7c02b7b2790d5c4bba051c140f20ecc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 280
 --- !u!1001 &310351129
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1742,7 +1760,7 @@ MonoBehaviour:
   maskTexture: {fileID: 2800000, guid: a67a008b578c17741a940e65d7bbb597, type: 3}
   disableAutoResolution: 0
   shaderNamePart: SimpleWater
-  debugMaterial: {fileID: 2100000, guid: 5b9a2868c3d321d4bac1d295ebb2490f, type: 2}
+  debugMaterial: {fileID: 0}
 --- !u!65 &1130787842
 BoxCollider:
   m_ObjectHideFlags: 0
