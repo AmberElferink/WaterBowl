@@ -445,7 +445,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7c02b7b2790d5c4bba051c140f20ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 280
+  rotationMaxSpeed: 400
+  rotationSpeed: 0
+  maxSwirlEffect: 2.5
+  goToSwirl: 0
+  shaderNamePart: SimpleWater
 --- !u!1001 &310351129
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1228,8 +1232,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 889268681}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.010732293, y: 0.56770843, z: -0.21194151, w: 0.79540735}
+  m_LocalPosition: {x: -3.3019068, y: -2.6193419, z: 2.8765862}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1851,7 +1855,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1330559329}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5746756, y: 3.59, z: -10.291512}
+  m_LocalPosition: {x: -3.5746756, y: -0.75, z: -10.291512}
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
