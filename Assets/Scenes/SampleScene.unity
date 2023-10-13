@@ -445,9 +445,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7c02b7b2790d5c4bba051c140f20ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationMaxSpeed: 400
-  rotationSpeed: 0
-  maxSwirlEffect: 2.5
+  rotationMaxSpeed: 319.1
+  rotationSpeed: 291.0192
+  maxSwirlEffect: 0.5
   goToSwirl: 0
   shaderNamePart: SimpleWater
 --- !u!1001 &310351129
@@ -483,7 +483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6812222523798199475, guid: 95447f47096a8bf488dddc44f24c395e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.97
+      value: 2.42
       objectReference: {fileID: 0}
     - target: {fileID: 6812222523798199475, guid: 95447f47096a8bf488dddc44f24c395e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -491,7 +491,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6812222523798199475, guid: 95447f47096a8bf488dddc44f24c395e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.37
+      value: -0.8
       objectReference: {fileID: 0}
     - target: {fileID: 6812222523798199475, guid: 95447f47096a8bf488dddc44f24c395e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1181,7 +1181,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 766553854}
   m_LocalRotation: {x: 0.12015322, y: -0.70127183, z: 0.12174565, w: 0.69206864}
-  m_LocalPosition: {x: 2.5323033, y: 9.822387, z: -6.686623}
+  m_LocalPosition: {x: 2.5323033, y: 0.96, z: -4.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1764,7 +1764,7 @@ MonoBehaviour:
   maskTexture: {fileID: 2800000, guid: a67a008b578c17741a940e65d7bbb597, type: 3}
   disableAutoResolution: 0
   shaderNamePart: SimpleWater
-  debugMaterial: {fileID: 0}
+  debugMaterial: {fileID: 2100000, guid: 5b9a2868c3d321d4bac1d295ebb2490f, type: 2}
 --- !u!65 &1130787842
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1912,7 +1912,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2041639327808754049, guid: 4992889e78a56554190bc7d4f10971c9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.097
+      value: 1.418
       objectReference: {fileID: 0}
     - target: {fileID: 2041639327808754049, guid: 4992889e78a56554190bc7d4f10971c9, type: 3}
       propertyPath: m_LocalPosition.z

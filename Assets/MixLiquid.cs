@@ -36,12 +36,7 @@ public class MixLiquid : MonoBehaviour
         rotationSpeed = map(goToSwirl, 0, 1, 0, rotationMaxSpeed);
         transitionSwirl = map(goToSwirl, 0, 1, 0, maxSwirlEffect);
         this.gameObject.transform.eulerAngles = new Vector3(this.transform.eulerAngles.x, this.gameObject.transform.eulerAngles.y + rotationSpeed * Time.deltaTime, this.gameObject.transform.eulerAngles.z);
-    }
-
-    void OnGUI()
-    {
         material.SetFloat(this.transitionSwirlShader, this.transitionSwirl);
-        //transitionSwirl.Remap()
     }
 
     readonly int transitionSwirlShader = Shader.PropertyToID("_TransitionSwirl");
