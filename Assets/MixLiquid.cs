@@ -12,6 +12,9 @@ public class MixLiquid : MonoBehaviour
     [Range(0, 1)]
     public float goToSwirl = 0;
     float transitionSwirl = 0;
+    public float maxNormalSwirl = 2.5f;
+    float swirlNormalStrength = 0;
+
     public string shaderNamePart = "SimpleWater";
     Material material;
 
@@ -35,11 +38,15 @@ public class MixLiquid : MonoBehaviour
         
         rotationSpeed = map(goToSwirl, 0, 1, 0, rotationMaxSpeed);
         transitionSwirl = map(goToSwirl, 0, 1, 0, maxSwirlEffect);
+        swirlNormalStrength = map(goToSwirl, 0, 1, 0, maxNormalSwirl);
         this.gameObject.transform.eulerAngles = new Vector3(this.transform.eulerAngles.x, this.gameObject.transform.eulerAngles.y + rotationSpeed * Time.deltaTime, this.gameObject.transform.eulerAngles.z);
         material.SetFloat(this.transitionSwirlShader, this.transitionSwirl);
+        material.SetFloat(this.swirlNormalStrengthShader, this.swirlNormalStrength);
     }
 
     readonly int transitionSwirlShader = Shader.PropertyToID("_TransitionSwirl");
+    readonly int swirlNormalStrengthShader = Shader.PropertyToID("_SwirlNormalStrength");
+
 
 }
 
