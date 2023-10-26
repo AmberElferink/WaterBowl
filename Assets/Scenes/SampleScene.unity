@@ -2270,7 +2270,7 @@ PrefabInstance:
     - target: {fileID: 5142989838558140413, guid: 4992889e78a56554190bc7d4f10971c9, type: 3}
       propertyPath: debugMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: 5b9a2868c3d321d4bac1d295ebb2490f, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 5142989838558140413, guid: 4992889e78a56554190bc7d4f10971c9, type: 3}
       propertyPath: DebugTextureMaterial
       value: 
